@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 from flask import Flask, make_response, request
-from service import xiaoai_from_json
+from service import xiaoai_from_json, xiaoai_response
 import time
 # from service.xiaoai import XiaoAIActionProperty
 
@@ -12,12 +12,24 @@ app =  Flask(__name__)
 def callbackFromMi():
     print('X-Xiaomi-Date = {}'.format(request.headers.get('X-Xiaomi-Date')))
 
-    data = request.get_data(as_text=True)
-    print('data = {}'.format(data))
+    req_data = request.get_data(as_text=True)
+    print('req_data = {}'.format(req_data))
 
-    req = xiaoai_from_json(data)
+    # req = xiaoai_from_json(data)
 
-    resp = make_response('Hello, World!')
+    resp_data = {
+        "version":"1.0",
+        "response":{
+            "to_speak":[
+                {
+                    "type":"0",
+                    "text": "刘晨逸是个大笨蛋"
+                }
+            ]
+        },
+        "is_session_end": False
+    }
+    resp = make_response(xiaoai_response(resp_data))
     resp.headers['x-original-host'] = 'api.tinypig.top'
     resp.headers['X-Xiaomi-Date'] = time.asctime(time.localtime(time.time()))
     return resp

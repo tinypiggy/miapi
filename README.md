@@ -31,3 +31,8 @@ a python api server，reply query from xiao ai speakers
     docker restart miapi
     docker rm miapi
     ```
+
+4. 测试请求
+```
+ curl -k --insecure "https://api.tinypig.top:8443"
+```
