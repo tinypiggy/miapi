@@ -1,2 +1,2 @@
-from xiaoai import xiaoai_from_json
-# from xiaoai import XiaoAIOpenRequest
+from service.xiaoai import xiaoai_from_json
+# from service.xiaoai import XiaoAIOpenRequest

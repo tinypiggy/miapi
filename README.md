@@ -11,7 +11,7 @@ a python api server，reply query from xiao ai speakers
 3. docker
     ```sh
     conda create -n miapi python=3.10
-    conda activate demo
+    conda activate miapi
 
     conda install pysocks
     pip install pipreqs
@@ -29,4 +29,5 @@ a python api server，reply query from xiao ai speakers
 
     docker stop miapi
     docker restart miapi
+    docker rm miapi
     ```
