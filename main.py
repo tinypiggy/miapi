@@ -5,16 +5,20 @@ from flask import Flask, make_response, request
 from service import xiaoai_from_json, xiaoai_response
 import time
 # from service.xiaoai import XiaoAIActionProperty
+import logging
+from logging import FileHandler
 
 app =  Flask(__name__)
+handler = logging.FileHandler('/applog/app.log')
+app.logger.addHandler(handler)
 
 @app.route('/', methods=['POST', 'GET'])
 def callbackFromMi():
-    print('X-Xiaomi-Date = {}'.format(request.headers.get('X-Xiaomi-Date')))
-    print('Authorization = {}'.format(request.headers.get('Authorization')))
+    app.logger.info('X-Xiaomi-Date = {}'.format(request.headers.get('X-Xiaomi-Date')))
+    app.logger.info('Authorization = {}'.format(request.headers.get('Authorization')))
 
     req_data = request.get_data(as_text=True)
-    print('req_data = {}'.format(req_data))
+    app.logger.info('req_data = {}'.format(req_data))
 
     # req = xiaoai_from_json(data)
 
