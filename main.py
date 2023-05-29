@@ -10,6 +10,10 @@ from logging import FileHandler
 
 app =  Flask(__name__)
 handler = logging.FileHandler('/var/log/miapi/app.log')
+handler.setLevel(logging.INFO)
+handler.setFormatter(logging.Formatter(
+    '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
+))
 app.logger.addHandler(handler)
 
 @app.route('/', methods=['POST', 'GET'])
