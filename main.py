@@ -9,7 +9,7 @@ import logging
 from logging import FileHandler
 
 app =  Flask(__name__)
-handler = logging.FileHandler('/applog/app.log')
+handler = logging.FileHandler('/var/log/miapi/app.log')
 app.logger.addHandler(handler)
 
 @app.route('/', methods=['POST', 'GET'])

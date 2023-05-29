@@ -1,1 +1,1 @@
-docker run -d -p 8000:5000 -v /var/log/miapi/:/applog/ --name miapi miapi:latest
+docker run -d -p 8000:5000 -v /var/log/miapi/:/var/log/miapi --name miapi miapi:latest
