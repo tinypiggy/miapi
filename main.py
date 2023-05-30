@@ -6,10 +6,12 @@ from service import xiaoai_from_json, xiaoai_response
 import time
 # from service.xiaoai import XiaoAIActionProperty
 import logging
-from logging import FileHandler
+from logging.handlers import TimedRotatingFileHandler
 
 app =  Flask(__name__)
-handler = logging.FileHandler('/var/log/miapi/app.log')
+
+logging.basicConfig(level=logging.INFO)
+handler = TimedRotatingFileHandler('/var/log/miapi/app.log', when='D', interval=1, backupCount=30)
 handler.setLevel(logging.INFO)
 handler.setFormatter(logging.Formatter(
     '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
