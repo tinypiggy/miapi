@@ -7,6 +7,7 @@ import time
 # from service.xiaoai import XiaoAIActionProperty
 import logging
 from logging.handlers import TimedRotatingFileHandler
+from service import getAnswer
 
 app =  Flask(__name__)
 
@@ -26,15 +27,17 @@ def callbackFromMi():
     req_data = request.get_data(as_text=True)
     app.logger.info('req_data = {}'.format(req_data))
 
-    # req = xiaoai_from_json(data)
+    req = xiaoai_from_json(req_data)
 
+    answer = getAnswer(req.query)
+    app.logger.info('answer = {}'.format(answer))
     resp_data = {
         "version":"1.0",
         "response":{
             "to_speak":
             {
                 "type": 0,
-                "text": "刘晨逸是个大笨蛋"
+                "text": answer
             },
             "not_understand": False
         },
